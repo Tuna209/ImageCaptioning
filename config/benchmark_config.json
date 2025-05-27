@@ -1,0 +1,112 @@
+{
+  "experiments": [
+    {
+      "name": "baseline",
+      "adapter_size": 8,
+      "learning_rate": 1e-05,
+      "batch_size": 4,
+      "gradient_accumulation_steps": 8,
+      "num_epochs": 3,
+      "warmup_ratio": 0.1,
+      "weight_decay": 0.01,
+      "max_grad_norm": 1.0,
+      "description": "Baseline model with default parameters"
+    },
+    {
+      "name": "adapter-size-4",
+      "adapter_size": 4,
+      "learning_rate": 1e-05,
+      "batch_size": 4,
+      "gradient_accumulation_steps": 8,
+      "num_epochs": 3,
+      "warmup_ratio": 0.1,
+      "weight_decay": 0.01,
+      "max_grad_norm": 1.0,
+      "description": "Smaller adapter size (4) to test impact on model capacity"
+    },
+    {
+      "name": "adapter-size-16",
+      "adapter_size": 16,
+      "learning_rate": 1e-05,
+      "batch_size": 4,
+      "gradient_accumulation_steps": 8,
+      "num_epochs": 3,
+      "warmup_ratio": 0.1,
+      "weight_decay": 0.01,
+      "max_grad_norm": 1.0,
+      "description": "Larger adapter size (16) to test impact on model capacity"
+    },
+    {
+      "name": "adapter-size-32",
+      "adapter_size": 32,
+      "learning_rate": 1e-05,
+      "batch_size": 4,
+      "gradient_accumulation_steps": 8,
+      "num_epochs": 3,
+      "warmup_ratio": 0.1,
+      "weight_decay": 0.01,
+      "max_grad_norm": 1.0,
+      "description": "Much larger adapter size (32) to test impact on model capacity"
+    },
+    {
+      "name": "lr-5e-6",
+      "adapter_size": 8,
+      "learning_rate": 5e-06,
+      "batch_size": 4,
+      "gradient_accumulation_steps": 8,
+      "num_epochs": 3,
+      "warmup_ratio": 0.1,
+      "weight_decay": 0.01,
+      "max_grad_norm": 1.0,
+      "description": "Lower learning rate (5e-6) to test impact on training stability"
+    },
+    {
+      "name": "lr-5e-5",
+      "adapter_size": 8,
+      "learning_rate": 5e-05,
+      "batch_size": 4,
+      "gradient_accumulation_steps": 8,
+      "num_epochs": 3,
+      "warmup_ratio": 0.1,
+      "weight_decay": 0.01,
+      "max_grad_norm": 1.0,
+      "description": "Higher learning rate (5e-5) to test impact on convergence speed"
+    },
+    {
+      "name": "warmup-0.2",
+      "adapter_size": 8,
+      "learning_rate": 1e-05,
+      "batch_size": 4,
+      "gradient_accumulation_steps": 8,
+      "num_epochs": 3,
+      "warmup_ratio": 0.2,
+      "weight_decay": 0.01,
+      "max_grad_norm": 1.0,
+      "description": "Longer warmup period (0.2) to test impact on training stability"
+    },
+    {
+      "name": "weight-decay-0.05",
+      "adapter_size": 8,
+      "learning_rate": 1e-05,
+      "batch_size": 4,
+      "gradient_accumulation_steps": 8,
+      "num_epochs": 3,
+      "warmup_ratio": 0.1,
+      "weight_decay": 0.05,
+      "max_grad_norm": 1.0,
+      "description": "Higher weight decay (0.05) to test impact on regularization"
+    },
+    {
+      "name": "optimized",
+      "adapter_size": 16,
+      "learning_rate": 5e-05,
+      "batch_size": 4,
+      "gradient_accumulation_steps": 8,
+      "num_epochs": 3,
+      "warmup_ratio": 0.2,
+      "weight_decay": 0.01,
+      "max_grad_norm": 1.0,
+      "description": "Optimized configuration based on preliminary results"
+    }
+  ]
+}

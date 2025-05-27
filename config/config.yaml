@@ -1,0 +1,48 @@
+# Model configuration
+model:
+  model_id: "google/paligemma-3b-mix-224"
+
+# Data configuration
+data:
+  train_csv: "processed_dataset/train.csv"
+  val_csv: "processed_dataset/val.csv"
+  test_csv: "processed_dataset/test.csv"
+  dataset_path: "processed_dataset/images"
+  max_train_samples: 0  # 0 means use all samples
+  max_val_samples: 0
+
+# Evaluation configuration
+evaluation:
+  eval_during_training: true
+  generate_max_length: 128
+  min_length: 20
+  num_beams: 4
+
+# Training configuration
+training:
+  batch_size: 4
+  gradient_accumulation_steps: 4
+  learning_rate: 1.0e-05
+  mixed_precision: true
+  num_epochs: 3
+  weight_decay: 0.05
+  label_smoothing: 0.1
+  use_wandb: true
+
+# LoRA configuration
+lora:
+  r: 8
+  lora_alpha: 16
+  lora_dropout: 0.1
+  target_modules:
+  - q_proj
+  - v_proj
+  - k_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+
+# Prompt configuration
+prompt:
+  input_prompt: "Describe all the objects and features visible in this remote sensing image:"
