@@ -1,0 +1,52 @@
+# Trained models (too large for git)
+outputs/
+*.pth
+*.bin
+*.safetensors
+
+# Generated results
+evaluation_results/
+results/
+huggingface_upload/results/
+baseline_eval/baseline_results/
+
+# Wandb cache and logs
+wandb/
+**/wandb/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files (keep .env.example)
+.env
+.venv/
+venv/
+env/
+
+# Temporary files
+*.tmp
+*.log
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# Dataset exploration outputs
+dataset_exploration/
+
+# Configuration files (if not needed)
+config/
