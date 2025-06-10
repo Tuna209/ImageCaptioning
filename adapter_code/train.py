@@ -139,7 +139,7 @@ def main():
     """Main function."""
     # Parse arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument("--token", type=str, required=True, help="Hugging Face token")
+    parser.add_argument("--token", type=str, default=None, help="Hugging Face token (optional, will use HF_TOKEN from .env if not provided)")
     parser.add_argument("--use_wandb", action="store_true", help="Use wandb for logging")
     parser.add_argument("--wandb_run_name", type=str, default=None, help="Custom wandb run name")
     parser.add_argument("--adapter_size", type=int, default=8, help="Size of the adapter (LoRA rank)")
@@ -161,10 +161,19 @@ def main():
     parser.add_argument("--verbose", action="store_true", help="Enable verbose output")
     args = parser.parse_args()
 
-    # Print all arguments
+    # Get HF token from environment if not provided as argument
+    if args.token is None:
+        args.token = os.getenv("HF_TOKEN")
+        if args.token is None:
+            raise ValueError("HF_TOKEN must be provided either as --token argument or in .env file")
+
+    # Print all arguments (but hide the token for security)
     print("Arguments:")
     for arg in vars(args):
-        print(f"  {arg}: {getattr(args, arg)}")
+        if arg == "token":
+            print(f"  {arg}: {'*' * 20}")  # Hide token for security
+        else:
+            print(f"  {arg}: {getattr(args, arg)}")
 
     # Set random seed
     set_seed(args.seed)
