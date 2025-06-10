@@ -49,27 +49,19 @@ cp .env.example .env
 python preprocessing.py
 
 # This creates:
-# - processed_dataset/train.csv (1000 samples)
-# - processed_dataset/val.csv (100 samples)
-# - processed_dataset/test.csv (100 samples)
+# - processed_dataset/train.csv 
+# - processed_dataset/val.csv 
+# - processed_dataset/test.csv 
 ```
 
 ### 3. Train Optimal Model
 ```bash
 # Train the best performing configuration
-python adapter_code/train.py \
-    --token $HF_TOKEN \
-    --adapter_size 8 \
-    --learning_rate 5e-05 \
-    --batch_size 16 \
-    --gradient_accumulation_steps 4 \
-    --num_epochs 3 \
-    --data_dir processed_dataset \
-    --output_dir outputs/adapter-8-best \
-    --use_wandb \
-    --subset_size 1000 \
-    --val_subset_size 100 \
-    --verbose
+# Without HF_TOKEN in .env
+python adapter_code/train.py --adapter_size 8 --learning_rate 5e-05 --batch_size 16 --gradient_accumulation_steps 4 --num_epochs 3 --data_dir processed_dataset --output_dir outputs/adapter-8-best --subset_size 1000 --val_subset_size 100 --verbose
+
+# With HF_TOKEN in .env
+python adapter_code/train.py --token $HF_TOKEN --adapter_size 8 --learning_rate 5e-05 --batch_size 16 --gradient_accumulation_steps 4 --num_epochs 3 --data_dir processed_dataset --output_dir outputs/adapter-8-best --use_wandb --subset_size 1000 --val_subset_size 100 --verbose
 ```
 
 ### 4. Evaluate Models
@@ -83,14 +75,7 @@ python baseline_eval/baseline_evaluation.py \
     --use_wandb
 
 # Evaluate fine-tuned model
-python evaluation/run_evaluation.py \
-    --mode finetuned \
-    --token $HF_TOKEN \
-    --adapter_path outputs/adapter-8-best/adapter-8-best \
-    --test_csv processed_dataset/test.csv \
-    --images_dir RISCM/resized \
-    --max_samples 100 \
-    --use_wandb
+python evaluation/run_evaluation.py --mode finetuned --adapter_path outputs/adapter-8-best/adapter-8-best --test_csv processed_dataset/test.csv --images_dir RISCM/resized --max_samples 100
 ```
 
 ## Reproduce Full Systematic Study (Optional)
